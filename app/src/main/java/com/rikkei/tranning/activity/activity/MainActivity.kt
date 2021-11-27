@@ -2,10 +2,10 @@ package com.rikkei.tranning.activity.activity
 
 import android.content.Intent
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.rikkei.tranning.activity.R
 
 class MainActivity : AppCompatActivity() {
@@ -15,11 +15,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (savedInstanceState != null) {
-            mediaManager?.reset()
-        }
+
         initViews()
-        Log.i(TAG, "onCreate: " + savedInstanceState + mediaManager)
+        Log.i(TAG, "onCreate: $savedInstanceState$mediaManager")
     }
 
     private fun initViews() {
@@ -40,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        mediaManager?.start()
         Log.i(TAG, "onResume: ")
     }
 
@@ -50,13 +49,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        mediaManager?.pause()
+
         Log.i(TAG, "onStop: ")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
+        mediaManager?.stop()
         Log.i(TAG, "onDestroy: ")
     }
 }

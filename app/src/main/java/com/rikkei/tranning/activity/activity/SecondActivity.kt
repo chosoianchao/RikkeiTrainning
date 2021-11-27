@@ -34,6 +34,7 @@ class SecondActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        mediaManager?.start()
         Log.i(TAG, "onResume: ")
     }
 
@@ -45,11 +46,12 @@ class SecondActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         Log.i(TAG, "onStop: ")
-        mediaManager?.reset()
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        mediaManager?.stop()
         Log.i(TAG, "onDestroy: ")
     }
 
